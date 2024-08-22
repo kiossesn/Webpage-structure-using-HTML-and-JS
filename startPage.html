@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .video-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .message {
+      font-size: 24px;
+      color: #28a745;
+      margin-bottom: 20px;
+      opacity: 1;
+      transition: opacity 2s ease-in-out;
+    }
+
+    .message.fade-out {
+      opacity: 0;
+    }
+
+    .menu-bar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 200px;
+      background-color: #333;
+      padding: 20px;
+      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      transition: transform 0.3s ease;
+      transform: translateX(100%); /* Initially hidden */
+    }
+
+    .menu-bar.show {
+      transform: translateX(0); /* Slide into view */
+    }
+
+    .menu-bar button {
+      background: linear-gradient(45deg, #000, #007bff);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px 0;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+
+    .menu-bar button:hover {
+      background: linear-gradient(45deg, #007bff, #000);
+    }
+
+    .toggle-button {
+      background: linear-gradient(45deg,#007bff, #000);
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+      z-index: 1000; /* Ensure the button is above other elements */
+    }
+
+    .toggle-button:hover {
+      background: linear-gradient(45deg, #000, #007bff);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- Video Background -->
+<video autoplay muted loop class="video-background">
+  <source src="1%20Minute%20of%20NEW%20YORK.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<div class="message" id="loginMessage">Login Successful</div>
+
+<button class="toggle-button" onclick="toggleMenu()">Menu</button>
+
+<footer> &copy; 2024 Kiossesn. All Rights Reserved.</footer>
+
+<div class="menu-bar" id="menuBar">
+  <button onclick="contactUs()">Contact Us</button>
+  <button onclick="myPage()">My page</button>
+  <button onclick="logout()">Log out</button>
+  <div class="text">Logged in</div>
+  <!-- Add more buttons or links here if needed -->
+</div>
+
+<script>
+  function toggleMenu() {
+    const menuBar = document.getElementById('menuBar');
+    menuBar.classList.toggle('show');
+  }
+
+  function contactUs() {
+    alert("Contact Us button clicked!");
+    // You can also redirect to a contact page like this:
+    // window.location.href = 'contact.html';
+  }
+
+  function myPage() {
+    alert("My page button clicked!");
+    // You can also redirect to a user's page like this:
+    // window.location.href = 'userPage.html';
+  }
+
+  // Function to fade out the message after 3 seconds
+  function logout() {
+    // Redirect to login page like
+    window.location.href = 'loginPage.html';
+  }
+
+  // Function to fade out the message after 3 seconds
+  function fadeOutMessage() {
+    const message = document.getElementById('loginMessage');
+    setTimeout(() => { message.classList.add('fade-out');}, 2000); // 2 seconds delay
+  }
+
+  // Call the fadeOutMessage function when the page loads
+  window.onload = fadeOutMessage;
+
+</script>
+
+</body>
+</html>
